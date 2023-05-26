@@ -20,12 +20,12 @@ function ShoppingCart() {
         const url = new URL('https://school-ecommerce-api.vercel.app/shopping-cart');
         url.searchParams.append('email', sessionStorage.getItem("email"));
         url.searchParams.append('password', sessionStorage.getItem("password"));
-        console.logU(url)
+        console.log("URL: " + url)
       
         const response = await fetch(url);
-        console.log(response)
+        console.log("RESPONSE: " + response)
         const data = await response.json();
-        console.log(data)
+        console.log("DATA: " + data)
         setItems(data);
       };
 
