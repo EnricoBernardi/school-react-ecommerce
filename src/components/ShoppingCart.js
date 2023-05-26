@@ -16,8 +16,12 @@ function ShoppingCart() {
           const email = sessionStorage.getItem('email');
           const password = sessionStorage.getItem('password');
     
-          // Costruisci l'URL con email e password
-          const url = `https://school-react-ecommerce.vercel.app/shopping-cart?email=${email}&password=${password}`;
+          // Codifica l'email e la password per l'URL
+          const encodedEmail = encodeURIComponent(email);
+          const encodedPassword = encodeURIComponent(password);
+    
+          // Costruisci l'URL con email e password codificate
+          const url = `https://school-ecommerce-api.vercel.app/shopping-cart?email=${encodedEmail}&password=${encodedPassword}`;
     
           try {
             // Effettua la chiamata all'API
