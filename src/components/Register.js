@@ -29,7 +29,7 @@ function Register() {
         }
 
         e.preventDefault()
-        const response = await fetch('http://api.ecommerce.scuola.enricobernardi.it/register', {
+        const response = await fetch('https://school-ecommerce-api.vercel.app/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, username, address, phone, seller}),

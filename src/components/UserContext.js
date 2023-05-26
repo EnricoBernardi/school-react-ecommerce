@@ -26,7 +26,7 @@ const UserProvider = ({ children }) => {
     lastError: '',
     doLogin: async (email, password) => {
       try {
-        const response = await fetch('http://api.ecommerce.scuola.enricobernardi.it/login', {
+        const response = await fetch('https://school-ecommerce-api.vercel.app/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),

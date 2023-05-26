@@ -17,7 +17,7 @@ function ShoppingCart() {
       }, []);
 
     const getShoppingCart = async () => {      
-        const url = new URL('http://api.ecommerce.scuola.enricobernardi.it:5100/shopping-cart');
+        const url = new URL('https://school-ecommerce-api.vercel.app/shopping-cart');
         url.searchParams.append('email', sessionStorage.getItem("email"));
         url.searchParams.append('password', sessionStorage.getItem("password"));
       
@@ -54,7 +54,7 @@ const handleRemoveItem = async (productId) => {
     const email = sessionStorage.getItem("email");
     const password = sessionStorage.getItem("password");
 
-    const response = await fetch('http://api.ecommerce.scuola.enricobernardi.it/shopping-cart', {
+    const response = await fetch('https://school-ecommerce-api.vercel.app/shopping-cart', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({email, password, productId}),
@@ -96,7 +96,7 @@ const handleCheckout = async () => {
         return;
     }
 
-    const response = await fetch('http://api.ecommerce.scuola.enricobernardi.it/checkout', {
+    const response = await fetch('https://school-ecommerce-api.vercel.app/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({email, password}),

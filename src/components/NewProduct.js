@@ -14,7 +14,7 @@ function NewProduct() {
     e.preventDefault()
     const product = { title, description, price, pictures };
     console.log(product)
-    const response = await fetch('http://api.ecommerce.scuola.enricobernardi.it/products', {
+    const response = await fetch('https://school-ecommerce-api.vercel.app/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(product),
