@@ -34,7 +34,7 @@ function ShoppingCart() {
               console.log('Errore nella richiesta');
             }
           } catch (error) {
-            console.log('Errore durante la chiamata all\'API:', error);
+            console.log('Errore durante la chiamataa all\'API:', error);
           }
         };
     
