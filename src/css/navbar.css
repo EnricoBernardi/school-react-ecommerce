@@ -1,0 +1,13 @@
+.eb-navbar {
+    background: rgb(42,49,57);
+}
+
+.form-control:focus {
+    border-color: rgb(255, 190, 0);
+    box-shadow: inset 0 1px 1px rgb(255, 190, 0), 0 0 8px rgb(255, 190, 0);
+  }
+
+  .form-control:focus > input-group-text{
+    border-color: rgb(255, 190, 0);
+    box-shadow: inset 0 1px 1px rgb(255, 190, 0), 0 0 8px rgb(255, 190, 0);
+  }

@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Register from './components/Register';
+import NewProduct from './components/NewProduct';
+import ShoppingCart from './components/ShoppingCart';
+import Login from './components/Login'
 
-function App() {
+import { UserProvider } from './components/UserContext';
+
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("loggedIn"));
+  const [seller, setSeller] = useState(sessionStorage.getItem("seller"));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setLoggedIn(sessionStorage.getItem("loggedIn"));
+      setSeller(sessionStorage.getItem("seller"));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <UserProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={loggedIn ? <Home /> : <Navigate to="/login" />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/new-product' element={seller && loggedIn ? <NewProduct /> : <>Non sei loggato o non sei un venditore.</>} />
+          <Route path='/shopping-cart' element={loggedIn ? <ShoppingCart /> : <Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </UserProvider>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

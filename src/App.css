@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+.eb-button-card {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ffff;
+}
+
+img {
+  max-height: 100%;
+  max-width: auto;
+}
+
+.eb-bg-default {
+  background-color: rgb(240, 240, 240);
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
