@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import Swal from 'sweetalert2';
 
-import ClimbingBoxLoader from "react-spinners/ClipLoader";
-
 import '../App.css'
 
 
@@ -13,21 +11,31 @@ function ShoppingCart() {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        getShoppingCart();
+        const fetchData = async () => {
+          // Ottieni l'email e la password dal session storage
+          const email = sessionStorage.getItem('email');
+          const password = sessionStorage.getItem('password');
+    
+          // Costruisci l'URL con email e password
+          const url = `https://school-react-ecommerce.vercel.app/shopping-cart?email=${email}&password=${password}`;
+    
+          try {
+            // Effettua la chiamata all'API
+            const response = await fetch(url);
+            if (response.ok) {
+              const data = await response.json();
+              // Aggiorna l'array items con i dati ottenuti
+              setItems(data.items);
+            } else {
+              console.log('Errore nella richiesta');
+            }
+          } catch (error) {
+            console.log('Errore durante la chiamata all\'API:', error);
+          }
+        };
+    
+        fetchData();
       }, []);
-
-    const getShoppingCart = async () => {      
-        const url = new URL('https://school-ecommerce-api.vercel.app/shopping-cart');
-        url.searchParams.append('email', sessionStorage.getItem("email"));
-        url.searchParams.append('password', sessionStorage.getItem("password"));
-        console.log("URL: " + url)
-      
-        const response = await fetch(url);
-        console.log("RESPONSE: " + response)
-        const data = await response.json();
-        console.log("DATA: " + data)
-        setItems(data);
-      };
 
     const calculateTotal = () => {
         let total = 0;
