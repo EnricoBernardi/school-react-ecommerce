@@ -20,9 +20,12 @@ function ShoppingCart() {
         const url = new URL('https://school-ecommerce-api.vercel.app/shopping-cart');
         url.searchParams.append('email', sessionStorage.getItem("email"));
         url.searchParams.append('password', sessionStorage.getItem("password"));
+        console.logU(url)
       
         const response = await fetch(url);
+        console.log(response)
         const data = await response.json();
+        console.log(data)
         setItems(data);
       };
 
@@ -38,7 +41,7 @@ function ShoppingCart() {
         calculateTotal();
     }, [items]);
 
-/*     const groupedItems = items.reduce((acc, item) => {
+    const groupedItems = items.reduce((acc, item) => {
     if (acc[item.title]) {
         acc[item.title].quantity += 1;
     } else {
@@ -48,7 +51,7 @@ function ShoppingCart() {
         };
     }
     return acc;
-}, {}); */
+}, {});
 
 const handleRemoveItem = async (productId) => {
     const email = sessionStorage.getItem("email");
@@ -61,8 +64,6 @@ const handleRemoveItem = async (productId) => {
     })
 
     const data = await response.json()
-
-    await new Promise(r => setTimeout(r, 2000));
 
     if (response.status === 200) {
         Swal.fire({
@@ -149,11 +150,11 @@ return (
                             </div>
                         )}
                         <ul class="list-group list-group">
-                            {Object.values(items).map((item) => (
+                            {Object.values(groupedItems).map((item) => (
                                 <li class="list-group-item d-flex justify-content-between align-items-start p-3">
                                 <div class="row w-100 justify-content-start align-items-center">
                                     <div class="col-2">
-                                        {/* <span class="badge bg-primary m-">x{item.quantity}</span> */}
+                                        <span class="badge bg-primary m-">x{item.quantity}</span>
                                         <img src={item.pictures} class="img-fluid px-1" alt="..." style={{ width: "100px" }} />
                                     </div>
                                     <div class="col-8">
