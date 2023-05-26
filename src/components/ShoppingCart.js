@@ -153,7 +153,7 @@ return (
                                 <li class="list-group-item d-flex justify-content-between align-items-start p-3">
                                 <div class="row w-100 justify-content-start align-items-center">
                                     <div class="col-2">
-                                        <span class="badge bg-primary m-">x{item.quantity}</span>
+                                        {/* <span class="badge bg-primary m-">x{item.quantity}</span> */}
                                         <img src={item.pictures} class="img-fluid px-1" alt="..." style={{ width: "100px" }} />
                                     </div>
                                     <div class="col-8">
