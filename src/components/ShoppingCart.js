@@ -38,7 +38,7 @@ function ShoppingCart() {
         calculateTotal();
     }, [items]);
 
-    const groupedItems = items.reduce((acc, item) => {
+/*     const groupedItems = items.reduce((acc, item) => {
     if (acc[item.title]) {
         acc[item.title].quantity += 1;
     } else {
@@ -48,7 +48,7 @@ function ShoppingCart() {
         };
     }
     return acc;
-}, {});
+}, {}); */
 
 const handleRemoveItem = async (productId) => {
     const email = sessionStorage.getItem("email");
@@ -147,7 +147,7 @@ return (
                             </div>
                         )}
                         <ul class="list-group list-group">
-                            {Object.values(groupedItems).map((item) => (
+                            {Object.values(items).map((item) => (
                                 <li class="list-group-item d-flex justify-content-between align-items-start p-3">
                                 <div class="row w-100 justify-content-start align-items-center">
                                     <div class="col-2">
