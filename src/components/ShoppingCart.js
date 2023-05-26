@@ -62,6 +62,8 @@ const handleRemoveItem = async (productId) => {
 
     const data = await response.json()
 
+    await new Promise(r => setTimeout(r, 2000));
+
     if (response.status === 200) {
         Swal.fire({
             icon: 'success',
