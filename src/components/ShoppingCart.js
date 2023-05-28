@@ -6,7 +6,6 @@ import BeatLoader from "react-spinners/BeatLoader";
 function ShoppingCart() {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getItems = async () => {
@@ -20,7 +19,6 @@ function ShoppingCart() {
       });
 
       const data = await response.json();
-      setIsLoading(false);
       setItems(data);
     };
     getItems();

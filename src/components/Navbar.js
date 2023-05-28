@@ -15,6 +15,7 @@ function Navbar() {
 
     return (
         <>
+        <div className="container-fluid">
             <div className="eb-navbar row py-3">
                 
                 <div className="col align-self-center px-5">
@@ -53,6 +54,7 @@ function Navbar() {
                 </div>
 
             </div>
+        </div>
         </>
     );
 }
