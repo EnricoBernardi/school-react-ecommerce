@@ -122,15 +122,6 @@ function ShoppingCart() {
     }
   };
 
-  const [discount, useDiscount] = useState(false);
-
-  const applyDiscount = (discountCode) => {
-    if (discountCode === "AAPPLE" && total > 0) {
-      setTotal(total - 100);
-    }
-    return;
-  };
-
   return (
     <>
       <div className="eb-bg-default">
@@ -169,18 +160,6 @@ function ShoppingCart() {
             <div className="col-lg-2 vh-100 d-flex rounded bg-white justify-content-center">
               <div className="py-2">
                 <h4>Il tuo totale è di: €{total}</h4>
-                <div className="py-3">
-                  <label htmlFor="email" className="form-label">
-                    Hai un codice sconto?
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="Inseriscilo qui.."
-                    onChange={(e) => applyDiscount(e.target.value)}
-                  />
-                </div>
                 <button className="btn btn-primary" onClick={() => handleCheckout()}>Checkout</button>
                 <p>Consegna garantita entro <span className="text-success">domani.</span></p>
               </div>
