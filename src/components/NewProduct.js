@@ -45,18 +45,18 @@ function NewProduct() {
 		<>
 			
 			<form className="container py-5" action="">
-            <h1>Add a new product </h1>
+            <h1>Aggiungi un prodotto</h1>
 
                 <div className="row py-5">
                     <div className="col-4">
 
                         <div className="mb-3">
-                            <label className="form-label">Title</label>
+                            <label className="form-label">Titolo</label>
                             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="MacBookPro 2021" value={title} onChange={(e) => setTitle(e.target.value)}/>
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Description</label>
-                            <textarea className="form-control" id="exampleFormControlTextarea1" placeholder="The most powerful Apple laptop.." rows="3" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                            <label className="form-label">Descrizione</label>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" placeholder="Il laptop più potente al mondo.." rows="3" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Price</label>
@@ -84,7 +84,7 @@ function NewProduct() {
                     </div>
 
                     <div className="col-5">
-                        <label className="form-label">Upload pictures</label>
+                        <label className="form-label">Inserisci Immagini</label>
                         <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="https://www.example.com/picture1.jpg, https://www.example.com/picture2.jpg" onChange={(e) => setPictures(e.target.value)} />
                     </div>
                 </div>
