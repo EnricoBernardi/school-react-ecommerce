@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 function Home() {
 
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -19,6 +20,7 @@ function Home() {
 
             const data = await response.json();
             setProducts(data);
+            setFilteredProducts(data);
         };
         getProducts();
     }, [])
@@ -50,6 +52,26 @@ function Home() {
         }
     }
 
+    const handleSearch = (event) => {
+        const value = event.target.value;
+      
+        if (products.length === 0) {
+          return;
+        }
+
+        if (value.length === 0) {
+            setFilteredProducts(products);
+            return;
+        }
+      
+        const filtProd = products.filter((product) => {
+          return product.title && product.title.toLowerCase().includes(value.toLowerCase());
+        });
+      
+        setFilteredProducts(filtProd);
+      };
+      
+
     return (
         <>
         {products.length === 0 ? (
@@ -58,9 +80,16 @@ function Home() {
             </div>
         ) : (
             <>
-            <div class="container py-5">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    {products.map(product => (
+            
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-4 g-4 py-3">
+                
+                <div className="input-group py-2">
+                        <span className="input-group-text" id="basic-addon1"><i className="bi bi-search"></i></span>
+                        <input type="text" className="form-control" placeholder="Cerca un prodotto..." aria-label="Username" aria-describedby="basic-addon1" onChange={handleSearch} />
+                    </div>
+                    
+                    {filteredProducts.map(product => (
                     <div class="col">
                         <button class="eb-button-card h-100 d-flex flex-column align-items-start border-0" onClick={() => {
                         Swal.fire({
