@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
-import { PacmanLoader } from 'react-spinners';
+import { NavLink } from 'react-router-dom';
 
 import { UserContext } from './UserContext';
 import Swal from 'sweetalert2';

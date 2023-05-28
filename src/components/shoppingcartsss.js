@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Swal from 'sweetalert2';
 import '../App.css';
-import BeatLoader from "react-spinners/BeatLoader";
 
 function ShoppingCart() {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getItems = async () => {
@@ -20,7 +18,6 @@ function ShoppingCart() {
       });
 
       const data = await response.json();
-      setIsLoading(false);
       setItems(data);
     };
     getItems();
@@ -69,13 +66,7 @@ function ShoppingCart() {
         showConfirmButton: false,
         timer: 800,
       }).then(() => {
-        setItems((items) => {
-            const newItems = [...items];
-            const index = newItems.findIndex((item) => item._id === productId);
-            newItems.splice(index, 1);
-            return newItems;
-            }
-        );
+        window.location.reload();
       });
     } else {
       Swal.fire({
@@ -139,16 +130,9 @@ function ShoppingCart() {
             <div className="col-10">
               <h1 className="display-5 fw-bold">Il tuo carrello</h1>
               {items.length === 0 ? (
-                <>
                 <div className="">
                   <p>Il carrello è vuoto. I prodotti che aggiungerai al carrello saranno visualizzati qui.</p>
                 </div>
-                <BeatLoader
-                    color={"#ffc107"}
-                    loading={true}
-                    size={10}
-                />
-                </>
               ) : (
                 <ul className="list-group list-group">
                   {Object.values(groupedItems).map((item) => (
@@ -175,23 +159,8 @@ function ShoppingCart() {
             </div>
             <div className="col-lg-2 vh-100 d-flex rounded bg-white justify-content-center">
               <div className="py-2">
-                {items.length === 0 ? (
-                    <>
-                    <h4>Il tuo totale è di:
-                    <BeatLoader
-                    color={"#ffc107"}
-                    loading={true}
-                    size={10}
-                    />
-                </h4>
-                    <button className="btn btn-primary disabled" onClick={() => handleCheckout()}>Checkout</button>
-                </>
-                ) : (
-                    <>
-                        <h4>Il tuo totale è di: €{total}</h4>
-                        <button className="btn btn-primary" onClick={() => handleCheckout()}>Checkout</button>
-                    </>
-                )}
+                <h4>Il tuo totale è di: €{total}</h4>
+                <button className="btn btn-primary" onClick={() => handleCheckout()}>Checkout</button>
                 <p>Consegna garantita entro <span className="text-success">domani.</span></p>
               </div>
             </div>

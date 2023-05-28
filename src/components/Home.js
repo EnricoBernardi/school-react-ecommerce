@@ -1,21 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import '../App.css'
+import BeatLoader from "react-spinners/BeatLoader";
 
 import Swal from 'sweetalert2';
 
 function Home() {
 
     const [products, setProducts] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const getProducts = async () => {
-            const response = await axios.get('https://school-ecommerce-api.vercel.app/products');
-            setProducts(response.data);
-        }
+            const response = await fetch('https://school-ecommerce-api.vercel.app/products', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            const data = await response.json();
+            setProducts(data);
+        };
         getProducts();
     }, [])
 
@@ -26,10 +30,8 @@ function Home() {
         const response = await fetch('https://school-ecommerce-api.vercel.app/shopping-cart-add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email, password, productId}),
-        })
-
-        const data = await response.json()
+            body: JSON.stringify({ email, password, productId }),
+        });
 
         if (response.status === 200) {
             Swal.fire({
@@ -50,6 +52,12 @@ function Home() {
 
     return (
         <>
+        {products.length === 0 ? (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <BeatLoader color={"#ffc107"} loading={true} size={50} />
+            </div>
+        ) : (
+            <>
             <div class="container py-5">
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     {products.map(product => (
@@ -91,6 +99,8 @@ function Home() {
                     ))}
                 </div>
             </div>
+        </>
+        )}
         </>
     );
 }

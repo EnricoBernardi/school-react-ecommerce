@@ -2,11 +2,10 @@ import React from "react";
 import '../css/navbar.css'
 import logo from'../pictures/EB-Shop_logo.png'
 
-import { Route, BrowserRouter, NavLink, Routes, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useContext } from "react";
 
 import { UserContext } from './UserContext';
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -19,7 +18,7 @@ function Navbar() {
             <div className="eb-navbar row py-3">
                 
                 <div className="col align-self-center px-5">
-                    <NavLink to="/"><img className="img-fluid" src={logo} width="70px"/></NavLink>
+                    <NavLink to="/"><img className="img-fluid" alt="..." src={logo} width="70px"/></NavLink>
                 </div>
 
                 <div className="col-7 align-self-center">
