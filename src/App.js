@@ -32,8 +32,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/' element={loggedIn ? <Home /> : <Navigate to="/login" />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={!loggedIn ? <Register /> : <Navigate to="/" />} />
+          <Route path='/login' element={!loggedIn ? <Login /> : <Navigate to="/" />} />
           <Route path='/new-product' element={seller && loggedIn ? <NewProduct /> : <>Non sei loggato o non sei un venditore.</>} />
           <Route path='/shopping-cart' element={loggedIn ? <ShoppingCart /> : <Navigate to="/login" />} />
           <Route path="*" element={<Navigate to="/" />} />
