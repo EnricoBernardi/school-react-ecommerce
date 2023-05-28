@@ -23,7 +23,7 @@ function Home() {
         const email = sessionStorage.getItem("email");
         const password = sessionStorage.getItem("password");
 
-        const response = await fetch('https://school-ecommerce-api.vercel.app/shopping-cart', {
+        const response = await fetch('https://school-ecommerce-api.vercel.app/shopping-cart-add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({email, password, productId}),

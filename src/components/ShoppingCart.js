@@ -11,35 +11,20 @@ function ShoppingCart() {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const fetchData = async () => {
-          // Ottieni l'email e la password dal session storage
-          const email = sessionStorage.getItem('email');
-          const password = sessionStorage.getItem('password');
-    
-          // Codifica l'email e la password per l'URL
-          const encodedEmail = encodeURIComponent(email);
-          const encodedPassword = encodeURIComponent(password);
-    
-          // Costruisci l'URL con email e password codificate
-          const url = `https://school-ecommerce-api.vercel.app/shopping-cart?email=${encodedEmail}&password=${encodedPassword}`;
-    
-          try {
-            // Effettua la chiamata all'API
-            const response = await fetch(url);
-            if (response.ok) {
-              const data = await response.json();
-              // Aggiorna l'array items con i dati ottenuti
-              setItems(data.items);
-            } else {
-              console.log('Errore nella richiesta');
-            }
-          } catch (error) {
-            console.log('Errore durante la chiamataa all\'API:', error);
-          }
-        };
-    
-        fetchData();
-      }, []);
+        const getShoppingCart = async () => {
+            const email = sessionStorage.getItem("email");
+            const password = sessionStorage.getItem("password");
+
+            const response = await fetch('https://school-ecommerce-api.vercel.app/shopping-cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email, password}),
+            })
+
+            const data = await response.json()
+            setItems(data);
+        }
+    }, []);
 
     const calculateTotal = () => {
         let total = 0;
