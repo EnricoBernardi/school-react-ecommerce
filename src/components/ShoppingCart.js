@@ -11,7 +11,7 @@ function ShoppingCart() {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const getShoppingCart = async () => {
+        const getItems = async () => {
             const email = sessionStorage.getItem("email");
             const password = sessionStorage.getItem("password");
 
@@ -20,11 +20,12 @@ function ShoppingCart() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email, password}),
             })
-
+            
             const data = await response.json()
             setItems(data);
         }
-    }, []);
+        getItems();
+    }, [])
 
     const calculateTotal = () => {
         let total = 0;
