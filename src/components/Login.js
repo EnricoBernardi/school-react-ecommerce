@@ -33,7 +33,16 @@ const Login = () => {
      }
 
     e.preventDefault();
-    doLogin(status.email, status.password)
+    const loginReposose = doLogin(status.email, status.password);
+    if (!loginReposose) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Qualcosa è andato storto!',
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    }
   };
 
   return (
