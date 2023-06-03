@@ -21,7 +21,7 @@ const Login = () => {
     }
 
     const emailRegex = /\S+@\S+\.\S+/;
-      if (!emailRegex.test(email)) {
+      if (!emailRegex.test(status.email)) {
           Swal.fire({
               icon: 'error',
               title: 'Oops...',
