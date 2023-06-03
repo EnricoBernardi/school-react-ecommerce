@@ -51,13 +51,11 @@ const UserProvider = ({ children }) => {
           sessionStorage.setItem("seller", seller);
           sessionStorage.setItem("loggedIn", loggedIn);
           navigate("/");
-          return true;
         } else if (response.status === 401) {
           setStatus((s) => ({
             ...s,
             lastError: 'Login failed',
           }));
-          return false;
         }
 
         window.location.reload();
@@ -66,7 +64,6 @@ const UserProvider = ({ children }) => {
           ...initialContext,
           lastError: 'An error occurred during login',
         }));
-        return false;
       }
     },
 
