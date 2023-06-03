@@ -28,6 +28,18 @@ function Register() {
             return;
         }
 
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Inserisci una email valida!',
+                showConfirmButton: false,
+                timer: 2500,
+            })
+            return;
+        }
+
         e.preventDefault()
         const response = await fetch('https://school-ecommerce-api.vercel.app/register', {
             method: 'POST',
